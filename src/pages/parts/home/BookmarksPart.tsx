@@ -1,3 +1,6 @@
+// NOTE: useAutoAnimate
+// 是 @formkit/auto-animate/react 库中的一个自定义 Hook。它用于实现自动动画效果。
+// 该库旨在为 Web 应用程序中的动画提供简化的 API。useAutoAnimate Hook 可以帮助您在 React 组件中轻松实现动画效果，而无需手动编写复杂的 CSS 或 JavaScript 动画代码。
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -21,6 +24,22 @@ export function BookmarksPart() {
 
   const items = useMemo(() => {
     let output: MediaItem[] = [];
+    // NOTE: Object.entries(bookmarks)
+    // 这个部分将 bookmarks 对象转换成一个由键值对组成的数组。每个键值对会以 [key, value] 的形式表示，其中 key 是对象属性名，value 是对应的属性值。
+    // Input:
+    // const person = {
+    //   name: 'John',
+    //   age: 30,
+    //   city: 'New York'
+    // };
+    // Output:
+    // [
+    //   ["name", "John"],
+    //   ["age", 30],
+    //   ["city", "New York"]
+    // ]
+
+    // NOTE: forEach 用法
     Object.entries(bookmarks).forEach((entry) => {
       output.push({
         id: entry[0],

@@ -17,6 +17,10 @@ function useSearch(search: string) {
   const [loading, setLoading] = useState<boolean>(false);
 
   const debouncedSearch = useDebounce<string>(search, 500);
+  // NOTE: useEffect
+  // 在 TypeScript React 中，useEffect 是一个 React Hook 函数，它用于处理组件的副作用操作。副作用是指那些不直接与组件渲染相关的操作，比如数据获取、订阅事件、手动修改 DOM 等。
+  // useEffect 接受两个参数：一个副作用函数和一个依赖数组（可选）。
+  // 副作用函数会在每次组件渲染时执行。它可以执行一些异步操作、订阅事件等。如果依赖数组为空，则在每次组件更新时都会执行该函数；如果依赖数组不为空，则只有依赖项发生变化时，副作用函数才会重新执行。这有助于避免不必要的执行和内存泄漏。
   useEffect(() => {
     setSearching(search !== "");
     setLoading(search !== "");
@@ -39,6 +43,7 @@ export function HomePage() {
   const s = useSearch(search);
 
   return (
+    // HomeLayout 添加 Footer
     <HomeLayout showBg={showBg}>
       <div className="mb-16 sm:mb-24">
         <Helmet>
@@ -46,14 +51,19 @@ export function HomePage() {
         </Helmet>
         <HeroPart searchParams={searchParams} setIsSticky={setShowBg} />
       </div>
+      {/* WideContainer 宽屏显示 */}
       <WideContainer>
         {s.loading ? (
+          // 等待加载
           <SearchLoadingPart />
         ) : s.searching ? (
+          // 搜索结果
           <SearchListPart searchQuery={search} />
         ) : (
           <>
+            {/* 标签页 */}
             <BookmarksPart />
+            {/* 正在看 */}
             <WatchingPart />
           </>
         )}

@@ -158,6 +158,10 @@ export function MediaCard(props: MediaCardProps) {
   }
 
   if (!props.linkable) return <span>{content}</span>;
+  // NOTE: className
+  // case1 className(a,b,c,d) 拼接成类名字符串 <div class="a b c d">
+  // case2 className({a:true, b:false, c:true}) <div class="a c">
+  // case3 className([a, b, c]) <div class="a b c">
   return (
     <Link
       to={link}
