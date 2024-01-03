@@ -39,6 +39,9 @@ export function HomePage() {
   const { t } = useTranslation();
   const [showBg, setShowBg] = useState<boolean>(false);
   const searchParams = useSearchQuery();
+  // NOTE: array destructuring
+  // a = ['apple', 'banana', 'orange']
+  // const [, banana] = a;
   const [search] = searchParams;
   const s = useSearch(search);
 
